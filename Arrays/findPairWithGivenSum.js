@@ -41,18 +41,21 @@ function findPairAfterSorting(inputArray, sum) {
 }
 
 //This approach used the Hash map data structure, its time complexity will be O(n)
-function findPaitHashing(inputArray, sum) {
+function findPairHashing(inputArray, sum) {
     let numMap = new Map();
     for (let i = 0; i < inputArray.length; i++) {
-
-        if(numMap.has(inputArray[i])){
+        if (numMap.has(sum - inputArray[i])) {
             return {
                 result: "Pair found",
                 pairs: [i, numMap[inputArray[i]]]
             };
         }
         else {
-            
+            numMap.set(sum - inputArray[i], inputArray[i]);
         }
+    }
+    return {
+        result : "No Pair",
+        pairs : [undefined, undefined]
     }
 }
